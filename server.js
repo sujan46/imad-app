@@ -74,7 +74,7 @@ function createTemplate (data) {
         </body>
     </html>
     `;
-    return htmpTemplate;
+    return htmlTemplate;
 }
 
 app.get('/', function (req, res) {
