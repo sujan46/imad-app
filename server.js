@@ -5,8 +5,55 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
+var article1 = {
+    title: 'Article1 by Sujan',
+    heading: 'Article1',
+    date: '05 Aug 2017',
+    content: `
+        <p>
+            THis is pargragh 1 for article. 
+        </p>
+        `
+};
+
+function createTemplate (data) {
+    var title = data.title;
+    var date = data.date;
+    var heading = data.heading;
+    var content = data.content;
+    var htmlTemplate = `
+    <!doctype html>
+    <html>
+        <head>
+            <title>
+               ${title}
+            </title>
+            <meta name="viewport" context="width=device-width, initial-scaled">
+            <link href='/ui/style.css' rel='stylesheet'/>
+        </head>
+        <body>
+            <div class="container">
+                <div>
+                    <a href = '/'>Home</a>
+                </div>
+                <hr/>
+                <h3>
+                    ${Head}
+                </h3>
+                <div>
+                   ${date}
+                </div>
+                <div>
+                    ${content}
+                </div>
+            </div>
+        </body>
+    </html>
+    `;
+    return htmpTemplate;
+}
 app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'index.html'));
+  res.send(createTemplate(article1));
 });
 
 app.get('/article1',function (req, res) {
